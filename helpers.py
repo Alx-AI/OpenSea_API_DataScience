@@ -38,7 +38,7 @@ def parse_assets_data(assets_dict):
 # Event types to use: 'successful' (sale), 'created' (listing), ' cancelled' , 'bid_entered', 'bid_withdrawn'
 # Event types not in use: 'transfer', 'approve'
 
-def parse_event_data(event_dict):
+def parse_events_data(event_dict):
     is_bundle = False
 
     if event_dict['asset'] != None:
@@ -127,9 +127,9 @@ def parse_sale_data(sale_dict):
     is_bundle = False
 
     if sale_dict['asset'] is not None:
-        animetas_id = sale_dict['asset']['token_id']
+        asset_id = sale_dict['asset']['token_id']
     elif sale_dict['asset_bundle'] is not None:
-        animetas_id = [asset['token_id'] for asset in sale_dict['asset_bundle']['assets']]
+        asset_id = [asset['token_id'] for asset in sale_dict['asset_bundle']['assets']]
         is_bundle = True
 
     seller_address = sale_dict['seller']['address']
@@ -151,7 +151,7 @@ def parse_sale_data(sale_dict):
     transaction_hash = sale_dict['transaction']['transaction_hash']
 
     result = {'is_bundle': is_bundle,
-              'animeta_id': animetas_id,
+              'event_id': asset_id,
               'seller_address': seller_address,
               'buyer_address': buyer_address,
               'buyer_username': buyer_username,
@@ -170,9 +170,9 @@ def parse_listing_data(listing_dict):
     is_bundle = False
 
     if listing_dict['asset'] is not None:
-        animetas_id = listing_dict['asset']['token_id']
+        asset_id = listing_dict['asset']['token_id']
     elif listing_dict['asset_bundle'] is not None:
-        animetas_id = [asset['token_id'] for asset in listing_dict['asset_bundle']['assets']]
+        asset_id = [asset['token_id'] for asset in listing_dict['asset_bundle']['assets']]
         is_bundle = True
 
     seller_address = listing_dict['seller']['address']
@@ -188,7 +188,7 @@ def parse_listing_data(listing_dict):
     usd_price = float(listing_dict['payment_token']['usd_price'])
 
     result = {'is_bundle': is_bundle,
-              'animeta_id': animetas_id,
+              'event_id': asset_id,
               'seller_address': seller_address,
               'seller_username': seller_username,
               'created_date': created_date,
