@@ -174,4 +174,3 @@ def download_event_info(save_location, contract="0x18df6c571f6fe9283b87f910e41dc
             print(str(len(events_that_day)) + " events saved to" + save_location + "assets_events_list_" + str(
                 start_date + timedelta(days=i)) + '.npz')
 
-
