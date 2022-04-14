@@ -36,7 +36,7 @@ def parse_assets_data(assets_dict):
 
 # Parse event data, there are 7 types of events each with different populated fields but the same fields all the same
 # Event types to use: 'successful' (sale), 'created' (listing), ' cancelled' , 'bid_entered', 'bid_withdrawn'
-# Event types not in use: 'transfer', 'approve'
+# Event types not in use:'transfer', 'approve'
 
 def parse_events_data(event_dict):
     is_bundle = False
